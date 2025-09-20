@@ -1,3 +1,16 @@
+/input
+/models/checkpoint - qwen model place
+       /embeddings
+       /hypernetworks
+       /loras
+       /unet
+       /vae
+/output
+
+
+
+
+
 # ComfyUI RunPod S3 Integration
 
 🚀 **Production-ready ComfyUI with AWS S3 integration for RunPod deployment**
