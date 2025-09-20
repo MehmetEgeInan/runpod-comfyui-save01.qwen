@@ -1,0 +1,78 @@
+{
+  "name": "ComfyUI RunPod S3 Integration",
+  "description": "Production-ready ComfyUI with Qwen Image Model and AWS S3 integration for RunPod deployment",
+  "dockerArgs": "--gpus all",
+  "imageName": "comfyui-runpod-s3:latest",
+  "isRunpodOfficial": false,
+  "isServerless": true,
+  "ports": "8188/http",
+  "volumeInGb": 100,
+  "containerDiskInGb": 50,
+  "minMemoryInGb": 16,
+  "minVcpuCount": 4,
+  "minGpuCount": 1,
+  "startScript": "",
+  "env": [
+    {
+      "key": "RUN_MODE",
+      "value": "ui",
+      "description": "Run mode: 'ui' for web interface, 'serverless' for API"
+    },
+    {
+      "key": "QWEN_REPO_ID", 
+      "value": "Qwen/Qwen-Image",
+      "description": "HuggingFace repository ID for Qwen model"
+    },
+    {
+      "key": "QWEN_FILENAME",
+      "value": "qwen_image_distill_full_bf16.safetensors",
+      "description": "Qwen model filename"
+    },
+    {
+      "key": "AWS_ACCESS_KEY_ID",
+      "value": "AKIAYQNJS76JGOLLN5UJ",
+      "description": "AWS S3 Access Key"
+    },
+    {
+      "key": "AWS_SECRET_ACCESS_KEY",
+      "value": "QxlvN/+o2ejU9DQzFEwqxjOJ/xjYi9EaOmde/AZq",
+      "description": "AWS S3 Secret Key"
+    },
+    {
+      "key": "S3_BUCKET_NAME",
+      "value": "discord-bot-new",
+      "description": "AWS S3 Bucket Name"
+    },
+    {
+      "key": "AWS_REGION",
+      "value": "eu-north-1",
+      "description": "AWS S3 Region"
+    },
+    {
+      "key": "PYTHONUNBUFFERED",
+      "value": "1",
+      "description": "Python unbuffered output"
+    },
+    {
+      "key": "NVIDIA_VISIBLE_DEVICES",
+      "value": "all",
+      "description": "Make all GPUs visible"
+    },
+    {
+      "key": "NVIDIA_DRIVER_CAPABILITIES",
+      "value": "compute,utility,graphics",
+      "description": "NVIDIA driver capabilities"
+    }
+  ],
+  "volumeMounts": [
+    {
+      "containerPath": "/workspace/ComfyUI/models",
+      "name": "models"
+    },
+    {
+      "containerPath": "/workspace/ComfyUI/output",
+      "name": "output"
+    }
+  ],
+  "readme": "# ComfyUI RunPod S3 Integration\n\n🚀 **Production-ready ComfyUI with AWS S3 integration**\n\n## Features\n- ✅ ComfyUI with Qwen Image Model (40GB)\n- ✅ AWS S3 automatic upload\n- ✅ Custom Nodes pre-installed\n- ✅ GPU Optimized (CUDA 12.1 + PyTorch 2.4.1)\n- ✅ Ampere, Hopper, Blackwell architectures support\n\n## Quick Start\n1. Deploy this template\n2. Wait 15-25 minutes for build\n3. Access via pod URL:8188\n4. Generated images auto-upload to S3\n\n## Hardware Requirements\n- **Minimum**: RTX 4090 (24GB VRAM), 16GB RAM\n- **Recommended**: A100 (40GB+ VRAM), 32GB RAM\n\n## Node List\n- ComfyUI Manager\n- VideoHelperSuite  \n- KJNodes\n- WanVideoWrapper\n- ControlNet Aux\n- WAS Node Suite\n\n## Performance Libraries\n- xFormers 0.0.28.post1\n- Flash Attention 2.5.0+\n- GPU optimized startup arguments\n\nFor detailed documentation, visit the GitHub repository."
+}
